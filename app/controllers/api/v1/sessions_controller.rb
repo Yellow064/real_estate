@@ -19,7 +19,5 @@ class Api::V1::SessionsController < ApplicationController
 		user.generate_authentication_token!
 		user.save
 		head 204
-	end
-
-	
+	end	
 end
