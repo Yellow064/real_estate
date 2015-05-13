@@ -13,4 +13,6 @@ class Api::V1::SessionsController < ApplicationController
 			render json: { errors: "Invalid email or password" }, status: 422
 		end
 	end
+
+	
 end
