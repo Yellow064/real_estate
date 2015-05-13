@@ -14,5 +14,9 @@ class Api::V1::SessionsController < ApplicationController
 		end
 	end
 
+	def destroy
+		render json: { errors: "Invalid email or password" }, status: 204
+	end
+
 	
 end
