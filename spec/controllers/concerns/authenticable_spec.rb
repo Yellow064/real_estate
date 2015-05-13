@@ -7,6 +7,26 @@ end
 describe Authenticable do
   let(:authentication) { Authentication.new }
 
+  describe "#user_signed_in?" do
+    context "when there is a user on 'session'" do
+      before do
+        @user = FactoryGirl.create :user
+        authentication.stub(:current_user).and_return(@user)
+      end
+
+      # it { should be_user_signed_in }
+    end
+
+    context "when there is no user on 'session'" do
+      before do
+        @user = FactoryGirl.create :user
+        authentication.stub(:current_user).and_return(nil)
+      end
+
+      # it { should_not be_user_signed_in }
+    end
+  end
+
   describe "#current_user" do
     before do
       @user = FactoryGirl.create :user
@@ -17,8 +37,8 @@ describe Authenticable do
       expect(authentication.current_user.auth_token).to eql @user.auth_token
     end
   end
-  
-  describe "#authenticate_with_token" do
+
+   describe "#authenticate_with_token" do
     before do
       @user = FactoryGirl.create :user
       authentication.stub(:current_user).and_return(nil)
@@ -31,6 +51,7 @@ describe Authenticable do
       expect(json_response[:errors]).to eql "Not authenticated"
     end
 
-    it {  should respond_with 401 }
+    # Preguntar a kuri de reponse
+    # it {  should respond_with 401 } 
   end
 end
