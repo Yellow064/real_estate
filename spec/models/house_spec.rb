@@ -82,4 +82,41 @@ describe House do
     end
   end
 
+  describe ".search" do
+    before(:each) do
+      @house1 = FactoryGirl.create :house, price: 100, title: "Casa Cumbres"
+      @house2 = FactoryGirl.create :house, price: 50, title: "Apartamento Apodaca"
+      @house3 = FactoryGirl.create :house, price: 150, title: "Apartamento Tecnologico"
+      @house4 = FactoryGirl.create :house, price: 99, title: "Casa Vista Hermosa"
+    end
+
+    context "when title 'Cumbres' and '100' a min price are set" do
+      it "returns an empty array" do
+        search_hash = { keyword: "Cumbres", min_price: 101 }
+        expect(House.search(search_hash)).to be_empty
+      end
+    end
+
+    context "when title 'Cumbres', '150' as max price, and '50' as min price are set" do
+      it "returns the house1" do
+        search_hash = { keyword: "Cumbres", min_price: 50, max_price: 150 }
+        expect(House.search(search_hash)).to match_array([@house1]) 
+      end
+    end
+
+    context "when an empty hash is sent" do
+      it "returns all the houses" do
+        expect(House.search({})).to match_array([@house1, @house2, @house3, @house4])
+      end
+    end
+
+    context "when house_ids is present" do
+      it "returns the house from the ids" do
+        search_hash = { house_ids: [@house1.id, @house2.id]}
+        expect(House.search(search_hash)).to match_array([@house1, @house2])
+      end
+    end
+  end
+
+
 end

@@ -3,8 +3,7 @@ class Api::V1::HousesController < ApplicationController
 	before_action :authenticate_with_token!, only: [:create, :update]
 
 	def index
-		houses = params[:house_ids].present? ? House.find(params[:house_ids]) : House.all
-		respond_with houses
+		respond_with House.search(params)
 	end
 
 	def show

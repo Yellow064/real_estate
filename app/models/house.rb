@@ -15,4 +15,15 @@ class House < ActiveRecord::Base
 	scope :recent, -> {
 		order(:updated_at)
 	}
+
+	def self.search(params = {})
+		houses = params[:house_ids].present? ? House.find(params[:house_ids]) : House.all
+
+		houses = houses.filter_by_title(params[:keyword]) if params[:keyword]
+		houses = houses.above_or_equal_to_price(params[:min_price].to_f) if params[:min_price]
+		houses = houses.below_or_equal_to_price(params[:max_price].to_f) if params[:max_price]
+		houses = houses.recent(params[:recent]) if params[:recent].present?
+
+		houses
+	end
 end
