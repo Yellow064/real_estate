@@ -92,14 +92,14 @@ describe House do
 
     context "when title 'Cumbres' and '100' a min price are set" do
       it "returns an empty array" do
-        search_hash = { keyword: "Cumbres", min_price: 101 }
+        search_hash = { title: "Cumbres", min_price: 101 }
         expect(House.search(search_hash)).to be_empty
       end
     end
 
     context "when title 'Cumbres', '150' as max price, and '50' as min price are set" do
       it "returns the house1" do
-        search_hash = { keyword: "Cumbres", min_price: 50, max_price: 150 }
+        search_hash = { title: "Cumbres", min_price: 50, max_price: 150 }
         expect(House.search(search_hash)).to match_array([@house1]) 
       end
     end
