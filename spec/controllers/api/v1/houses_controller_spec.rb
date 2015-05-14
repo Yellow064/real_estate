@@ -8,7 +8,7 @@ describe Api::V1::HousesController do
 		end
 
 		it "returns the information about a reporter on a hash" do
-			house_response = json_response
+			house_response = json_response[:house]
 			expect(house_response[:title]).to eql @house.title
 		end
 
@@ -39,7 +39,7 @@ describe Api::V1::HousesController do
 			end
 
 			it "renders the json representation for the house record just created" do
-				house_response = json_response
+				house_response = json_response[:house]
 				expect(house_response[:title]).to eql @house_attributes[:title]
 			end
 
@@ -81,7 +81,7 @@ describe Api::V1::HousesController do
 			end
 
 			it "renders the json representation for the updated user" do
-				house_response = json_response
+				house_response = json_response[:house]
 				expect(house_response[:title]).to eql "An expensive TV"
 			end
 
