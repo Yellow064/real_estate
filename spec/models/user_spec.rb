@@ -13,6 +13,8 @@ describe User do
 	it { should respond_to(:auth_token) }
 	# we test the auth_token is unique
 	it { should validate_uniqueness_of(:auth_token)}
+	#validates the house relation
+	it { should have_many(:houses) }
 
 	describe "#generate_authentication_token!" do
 		it "generates a unique token" do
@@ -31,5 +33,21 @@ describe User do
 	describe "when email is not present" do
 		before { @user.email = " " }
 		it { should_not be_valid }
+	end
+
+	describe "#houses association" do
+
+		before do
+			@user.save
+			3.times { FactoryGirl.create :house, user: @user }
+		end
+
+		it "destroys the associated houses on self destruct" do
+			houses = @user.houses
+			@user.destroy
+			houses.each do |house|
+				expect(House.find(house)).to raise_error ActiveRecord::RecordNotFound
+			end
+		end
 	end
 end

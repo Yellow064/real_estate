@@ -4,6 +4,6 @@ FactoryGirl.define do
     price { rand() * 100 }
     published false
     date_published { FFaker::Time.date }
-    user_id "1"
+    user
   end
 end
