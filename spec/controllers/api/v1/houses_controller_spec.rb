@@ -13,6 +13,12 @@ describe Api::V1::HousesController do
 		end
 
 		it { should respond_with 200 }
+
+		it "has the user as a embeded object" do
+			house_response = json_response[:house]
+			expect(house_response[:user][:email]).to eql @house.user.email
+		end
+
 	end
 
 	describe "GET #index" do
@@ -27,6 +33,13 @@ describe Api::V1::HousesController do
 		end
 
 		it { should respond_with 200 }
+
+		it "returns the user object into each house" do
+			houses_response = json_response[:houses]
+			houses_response.each do |house_response|
+				expect(house_response[:user]).to be_present
+			end
+		end
 	end
 
 	describe "POST #create" do
