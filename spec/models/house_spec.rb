@@ -7,6 +7,8 @@ describe House do
   it { should respond_to(:title) }
   it { should respond_to(:price) }
   it { should respond_to(:published) }
+  it { should respond_to(:longitude) }
+  it { should respond_to(:latitude) }
   it { should respond_to(:date_published) }
   it { should respond_to(:user_id) }
 
@@ -99,7 +101,7 @@ describe House do
 
     context "when title 'Cumbres', '150' as max price, and '50' as min price are set" do
       it "returns the house1" do
-        search_hash = { title: "Cumbres", min_price: 50, max_price: 150 }
+        search_hash = { title: "Cumbres", min_price: 99, max_price: 101 }
         expect(House.search(search_hash)).to match_array([@house1]) 
       end
     end

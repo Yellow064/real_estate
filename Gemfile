@@ -23,7 +23,7 @@ gem 'active_model_serializers', git: 'git@github.com:rails-api/active_model_seri
 
 group :development do
 	# Use sqlite3 as the database for Active Record
- 	gem 'sqlite3'
+ 	gem 'pg'
 end
 
 group :doc do
