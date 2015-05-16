@@ -23,6 +23,9 @@ gem 'active_model_serializers', "~> 0.8.0"
 
 gem 'pg'
 
+# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
+gem 'turbolinks'
+
 
 # group :development do
 # 	# Use sqlite3 as the database for Active Record
