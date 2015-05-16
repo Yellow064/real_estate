@@ -9,7 +9,7 @@ SabisuRails.setup do |config|
   # config.ignored_attributes = %w{ created_at updated_at id }
 
   # HTTP methods
-  # config.http_methods = %w{ GET POST PUT DELETE PATCH }
+  config.http_methods = %w{ GET POST PUT DELETE PATCH }
 
   # Headers to include on each request
   #
@@ -22,10 +22,10 @@ SabisuRails.setup do |config|
   # config.layout = "sabisu"
 
   # Resources on the api
-   config.resources = [:users, :houses]
+   config.resources = [:houses, :users]
 
   # Default resource
-   config.default_resource = :houses
+  # config.default_resource = :houses
 
   # Application name
   # mattr_accessor :app_name
