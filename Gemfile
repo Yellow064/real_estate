@@ -21,10 +21,13 @@ gem 'jquery-rails'
 #Api gems
 gem 'active_model_serializers', "~> 0.8.0"
 
-group :development do
-	# Use sqlite3 as the database for Active Record
- 	gem 'pg'
-end
+gem 'pg'
+
+
+# group :development do
+# 	# Use sqlite3 as the database for Active Record
+#  	gem 'pg'
+# end
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
@@ -36,7 +39,6 @@ group :test, :development do
   gem "factory_girl_rails"
   gem "ffaker"
   gem "shoulda-matchers"
-
 end
 
 gem "devise"
