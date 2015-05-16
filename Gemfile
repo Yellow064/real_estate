@@ -19,7 +19,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 #Api gems
-gem 'active_model_serializers', git: 'git@github.com:rails-api/active_model_serializers.git', branch: '0-8-stable'
+gem 'active_model_serializers', "~> 0.8.0"
 
 group :development do
 	# Use sqlite3 as the database for Active Record
